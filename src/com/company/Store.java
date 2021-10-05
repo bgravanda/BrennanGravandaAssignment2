@@ -1,5 +1,6 @@
 package com.company;
 
+import javax.xml.namespace.QName;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -12,21 +13,24 @@ public class Store {
 
     private ArrayList<Order> allOrders;
     private ArrayList<Customer> allCustomers;
-    private ArrayList<Integer> customerID;
+    private static int nextID = 1005;
+
 
 
 
     public Store() throws IOException {
         allOrders = new ArrayList<Order>();
         allCustomers = new ArrayList<Customer>();
-        customerID = new ArrayList<Integer>();
         var filename = "Customers.txt";
         var filePath = Paths.get(filename);
         var allLines = Files.readAllLines(filePath);
         for (var line : allLines) {
             var splitLine = line.split(",");
-            allCustomers.add(splitLine[0]);
-            customerID.add(Integer.parseInt(splitLine[1]));
+            var customerName = splitLine[0];
+            var customerID = Integer.parseInt(splitLine[1]);
+            var newCustomer = new Customer(customerName, customerID);
+            allCustomers.add(newCustomer);
+
 
         }
     }
@@ -59,14 +63,15 @@ public class Store {
     private void ManageCustomerMenu(Scanner menuReader, Customer currentCustomer) {
 
         while (true) {
-            printManageCustomerMenu();
+            printManageCustomerMenu(currentCustomer);
             var customerChoice = menuReader.nextInt();
             switch (customerChoice) {
                 case 1:
                     makeOrder(menuReader, currentCustomer);
                     break;
                 case 2:
-                    addAddress(menuReader, currentCustomer);
+                    var shipping = new ShippingAddress(menuReader);
+                    currentCustomer.addAddress(shipping);
                     break;
                 case 3:
                     return;
@@ -74,20 +79,13 @@ public class Store {
         }
     }
 
-    public void addAddress(Scanner menuReader, Customer currentCustomer) {
-        }
-
-
-    private void makeOrder(Scanner menuReader, Customer currentCustomer) {
-    }
-
-
 
     private void addCustomer(Scanner inputReader) {
         System.out.println("What is the new Customer's name:");
         inputReader.nextLine();
         var customerName = inputReader.nextLine();
-        var custID = inputReader.nextInt();
+        var custID = nextID;
+        nextID++;
         System.out.println(customerName+" has an ID of "+custID);
         var newCustomer = new Customer(customerName, custID);
         allCustomers.add(newCustomer);
@@ -100,6 +98,7 @@ public class Store {
         for (var currentCustomer : allCustomers) {
             if (currentCustomer.getID() == idToFind)
                 return Optional.of(currentCustomer);
+
         }
         return Optional.empty();
     }
@@ -116,9 +115,9 @@ public class Store {
         System.out.println("Enter choice:");
     }
 
-    private void printManageCustomerMenu() {
+    private void printManageCustomerMenu(Customer currentCustomer) {
         System.out.println("**************************************");
-        System.out.println("What do you want to do with this customer?");
+        System.out.println("What do you want to do with "+currentCustomer.getName()+" ?");
         System.out.println("[1] Make an order");
         System.out.println("[2] Add an address");
         System.out.println("[3] Return to main menu");
