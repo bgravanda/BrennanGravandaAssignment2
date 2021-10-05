@@ -7,9 +7,18 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 
-public class Store<custID, allCustomers> {
-    custID = new ArrayList<custID>();
-    allCustomers = new ArrayList<Customer>();
+public class Store {
+
+    private ArrayList<Order> allOrders;
+
+    private ArrayList<Customer> allCustomers;
+
+
+    public Store() {
+        allOrders = new ArrayList<Order>();
+        allCustomers = new ArrayList<Customer>();
+
+    }
 
     public void runStore() {
         var menuReader = new Scanner(System.in);
@@ -35,12 +44,13 @@ public class Store<custID, allCustomers> {
             }
         }
     }
+
     private void ManageCustomerMenu(Scanner menuReader, Customer currentCustomer) {
 
-        while(true){
+        while (true) {
             printManageCustomerMenu();
             var customerChoice = menuReader.nextInt();
-            switch (customerChoice){
+            switch (customerChoice) {
                 case 1:
                     makeOrder(menuReader, currentCustomer);
                     break;
@@ -53,12 +63,19 @@ public class Store<custID, allCustomers> {
         }
     }
 
+    private void makeOrder(Scanner menuReader, Customer currentCustomer) {
+    }
+
+    private void addAddress(Scanner menuReader, Customer currentCustomer) {
+    }
+
     private void addCustomer(Scanner inputReader) {
         System.out.println("What is the new Customer's name:");
         inputReader.nextLine(); //eat the orphan newline from previous nextInt call
         var customerName = inputReader.nextLine();
         //create a custID
         var custID = inputReader.nextInt();
+        System.out.println(customerName+" has an ID of "+custID);
         var newCustomer = new Customer(customerName, custID);
         allCustomers.add(newCustomer);
 
@@ -85,7 +102,8 @@ public class Store<custID, allCustomers> {
         System.out.println("********************************");
         System.out.println("Enter choice:");
     }
-    private void printManageCustomerMenu(){
+
+    private void printManageCustomerMenu() {
         System.out.println("**************************************");
         System.out.println("What do you want to do with this customer?");
         System.out.println("[1] Make an order");
@@ -97,5 +115,6 @@ public class Store<custID, allCustomers> {
 
     }
 }
+
 
 
