@@ -11,7 +11,6 @@ import java.util.ArrayList;
 public class Store {
 
     private ArrayList<Order> allOrders;
-
     private ArrayList<Customer> allCustomers;
     private ArrayList<Integer> customerID;
 
@@ -75,7 +74,7 @@ public class Store {
         }
     }
 
-    private void addAddress(Scanner menuReader, Customer currentCustomer) {
+    public void addAddress(Scanner menuReader, Customer currentCustomer) {
         }
 
 
@@ -88,7 +87,7 @@ public class Store {
         System.out.println("What is the new Customer's name:");
         inputReader.nextLine();
         var customerName = inputReader.nextLine();
-        var custID = nextInt();
+        var custID = inputReader.nextInt();
         System.out.println(customerName+" has an ID of "+custID);
         var newCustomer = new Customer(customerName, custID);
         allCustomers.add(newCustomer);

@@ -9,7 +9,5 @@ public class ShippingAddress {
     private String PostalCode;
 
     public ShippingAddress() {
-
     }
-
 }
