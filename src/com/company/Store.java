@@ -1,5 +1,6 @@
 package com.company;
 
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Optional;
@@ -12,12 +13,23 @@ public class Store {
     private ArrayList<Order> allOrders;
 
     private ArrayList<Customer> allCustomers;
+    private ArrayList<Integer> customerID;
 
 
-    public Store() {
+
+    public Store() throws IOException {
         allOrders = new ArrayList<Order>();
         allCustomers = new ArrayList<Customer>();
+        customerID = new ArrayList<Integer>();
+        var filename = "Customers.txt";
+        var filePath = Paths.get(filename);
+        var allLines = Files.readAllLines(filePath);
+        for (var line : allLines) {
+            var splitLine = line.split(",");
+            allCustomers.add(splitLine[0]);
+            customerID.add(Integer.parseInt(splitLine[1]));
 
+        }
     }
 
     public void runStore() {
@@ -63,18 +75,20 @@ public class Store {
         }
     }
 
+    private void addAddress(Scanner menuReader, Customer currentCustomer) {
+        }
+
+
     private void makeOrder(Scanner menuReader, Customer currentCustomer) {
     }
 
-    private void addAddress(Scanner menuReader, Customer currentCustomer) {
-    }
+
 
     private void addCustomer(Scanner inputReader) {
         System.out.println("What is the new Customer's name:");
-        inputReader.nextLine(); //eat the orphan newline from previous nextInt call
+        inputReader.nextLine();
         var customerName = inputReader.nextLine();
-        //create a custID
-        var custID = inputReader.nextInt();
+        var custID = nextInt();
         System.out.println(customerName+" has an ID of "+custID);
         var newCustomer = new Customer(customerName, custID);
         allCustomers.add(newCustomer);
@@ -115,6 +129,7 @@ public class Store {
 
     }
 }
+
 
 
 
