@@ -7,6 +7,8 @@ public class Customer {
     private int customerID;
     private String name;
     private ArrayList<ShippingAddress> addresses;
+
+
     public void addAddress(ShippingAddress newAddress){
 
 

@@ -67,9 +67,7 @@ public class Store {
             var customerChoice = menuReader.nextInt();
             switch (customerChoice) {
                 case 1:
-                    var orders = new Order(, currentCustomer);
-                    currentCustomer.addOrderer();
-                    orders.getDestination();
+
 
                     break;
                 case 2:
