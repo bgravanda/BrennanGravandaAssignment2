@@ -67,11 +67,13 @@ public class Store {
             var customerChoice = menuReader.nextInt();
             switch (customerChoice) {
                 case 1:
-                    makeOrder(menuReader, currentCustomer);
+                    //var orders = new Order(menuReader);
+                    //currentCustomer.
                     break;
                 case 2:
                     var shipping = new ShippingAddress(menuReader);
                     currentCustomer.addAddress(shipping);
+                    System.out.println(currentCustomer.getName()+" has an address of "+shipping.getAddress());
                     break;
                 case 3:
                     return;
