@@ -25,4 +25,8 @@ public class ShippingAddress {
         return Address;
 
     }
+    public String toString(){
+        return Address;
+    }
+
 }

@@ -67,7 +67,7 @@ public class Store {
             var customerChoice = menuReader.nextInt();
             switch (customerChoice) {
                 case 1:
-                   makeOrder();
+                   makeOrder(currentCustomer, menuReader);
                     break;
                 case 2:
                     var shipping = new ShippingAddress(menuReader);
@@ -80,11 +80,15 @@ public class Store {
         }
     }
 
-    private void makeOrder() {
-        for(var currentOrder: allOrders){
-            System.out.println(currentOrder.getOrderedBy()+"'s order will be sent to "+currentOrder.getDestination());
+    private void makeOrder(Customer CustOrder, Scanner Input) {
+        Input.nextLine();
+        var custadd=CustOrder.SelectAddress(Input);
+        System.out.println(custadd.toString());
+        Input.nextLine();
+        var currentOrder = new Order(custadd, CustOrder);
+        System.out.println(currentOrder.getOrderedBy()+"'s order will be sent to "+currentOrder.getDestination());
 
-        }
+
 
     }
 
