@@ -8,12 +8,13 @@ public class Order {
         orderedBy = orderer;
 
     }
-    public Customer getOrderedBy(){
-        var order = new Customer(.getName())
-        return orderedBy;
+    public String getOrderedBy(){
+        var newOrder = orderedBy.toString();
+        return newOrder;
     }
-    public ShippingAddress getDestination(){
-        return destination;
+    public String getDestination(){
+        var newDestination=destination.toString();
+        return newDestination;
     }
 
 }

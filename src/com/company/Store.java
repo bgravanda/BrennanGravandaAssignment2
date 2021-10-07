@@ -67,8 +67,7 @@ public class Store {
             var customerChoice = menuReader.nextInt();
             switch (customerChoice) {
                 case 1:
-
-
+                   makeOrder();
                     break;
                 case 2:
                     var shipping = new ShippingAddress(menuReader);
@@ -79,6 +78,14 @@ public class Store {
                     return;
             }
         }
+    }
+
+    private void makeOrder() {
+        for(var currentOrder: allOrders){
+            System.out.println(currentOrder.getOrderedBy()+"'s order will be sent to "+currentOrder.getDestination());
+
+        }
+
     }
 
 
