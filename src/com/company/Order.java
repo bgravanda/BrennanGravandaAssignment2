@@ -1,11 +1,15 @@
 package com.company;
 
+import java.util.ArrayList;
+
 public class Order {
     private ShippingAddress destination;
     private Customer orderedBy;
-    public Order(ShippingAddress dest, Customer orderer){
+    private ArrayList<merchandiseItem>cartForOrder;
+    public Order(ShippingAddress dest, Customer orderer,ArrayList<merchandiseItem> cart){
         destination = dest;
         orderedBy = orderer;
+        cartForOrder= cart ;
 
     }
     public String getOrderedBy(){
