@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.Optional;
 import java.util.Scanner;
 
-public class Customer {
+public abstract class Customer {
     private int customerID;
     private String name;
     private ArrayList<ShippingAddress> addresses;
-
+    public abstract double payForOrder(ArrayList<ItemsForSale> itemsInOrder);
 
     public void addAddress(ShippingAddress newAddress){
         addresses.add(newAddress);
@@ -45,6 +45,13 @@ public class Customer {
     public String toString() {
         return customerID+" "+name;
     }
+    public double payOutstandingBalance(){
+        return 0.0;
+    }
+    public void arrangeDelivery(){
+        System.out.println(name+"'s order will be delivered any time");
+    }
+
 
 }
 
