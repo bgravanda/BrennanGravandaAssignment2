@@ -8,4 +8,13 @@ public class merchandiseItem {
     public merchandiseItem merchandiseItem(String Name, double price, ItemType type){
 
     }
+    public String getName(){
+        return Name;
+    }
+    public double getPrice(){
+        return price;
+    }
+    private ItemType getType(){
+        return taxibleType;
+    }
 }
