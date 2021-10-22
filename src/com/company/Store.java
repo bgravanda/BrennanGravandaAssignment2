@@ -14,6 +14,8 @@ public class Store {
     private ArrayList<Order> allOrders;
     private ArrayList<Customer> allCustomers;
     private static int nextID = 1005;
+    private ArrayList<merchandiseItem>allItems;
+    private ArrayList<ItemType>allItemTypes;
 
 
 
@@ -28,11 +30,32 @@ public class Store {
             var splitLine = line.split(",");
             var customerName = splitLine[0];
             var customerID = Integer.parseInt(splitLine[1]);
-            var newCustomer = new Customer(customerName, customerID);
-            allCustomers.add(newCustomer);
-
+            var customerType = splitLine[2];
+            if (customerType== "ResidentialCustomer") {
+                var newCustomer = new ResidentialCustomer(customerName, customerID);
+                allCustomers.add(newCustomer);
+            }
+            else (customerType=="BusinessCustomer"){
+                var newCustomer = new BusinessCustomer(customerName, customerID);
+                allCustomers.add(newCustomer);
+            }
+            else (customerType=="TaxExemptCustomer"){
+                var newCustomer = new TaxExemptCustomer(customerName,customerID);
+                allCustomers.add(newCustomer);
+            }
 
         }
+        allItems = new ArrayList<merchandiseItem>();
+        allItemTypes = new ArrayList<ItemType>();
+        var filename2 = Paths.get(filename);
+        var allLines2 = Files.readAllLines(filePath);
+        for ( var line : allLines2){
+            var splitLine = line.split(",");
+            var itemName = splitLine[0];
+            var itemType = splitLine[1];
+            var itemPrice = splitLine[2];
+        }
+
     }
 
     public void runStore() {
@@ -97,6 +120,8 @@ public class Store {
         System.out.println("What is the new Customer's name:");
         inputReader.nextLine();
         var customerName = inputReader.nextLine();
+        System.out.println("Are you a Tax Exempt Customer,Residential Customer, or Business Customer");
+        var type = inputReader.nextLine();
         var custID = nextID;
         nextID++;
         System.out.println(customerName+" has an ID of "+custID);

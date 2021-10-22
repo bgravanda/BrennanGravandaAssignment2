@@ -8,7 +8,7 @@ public abstract class Customer {
     private int customerID;
     private String name;
     private ArrayList<ShippingAddress> addresses;
-    public abstract double payForOrder(ArrayList<ItemsForSale> itemsInOrder);
+    public abstract double payForOrder(ArrayList<merchandiseItem> itemsInOrder);
 
     public void addAddress(ShippingAddress newAddress){
         addresses.add(newAddress);

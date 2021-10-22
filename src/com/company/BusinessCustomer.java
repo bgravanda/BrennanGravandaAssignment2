@@ -6,9 +6,16 @@ public class BusinessCustomer extends Customer{
     private double purchaseOrderBalance;
     private int PersonID;
     private String CustName;
-    public  double payForOrder(ArrayList<ItemsForSale> itemsInOrder);
+
+    public BusinessCustomer(String customerName, Integer custID) {
+        super(customerName, custID);
+    }
+
+    public double payForOrder(ArrayList<merchandiseItem> itemsInOrder){
+
+    }
     public void arrangeDelivery(){
-        var person = new Customer(CustName,PersonID);
-        System.out.println("this order will be for "+person+" and it will be payed with a purchase order");
+
+        System.out.println("this order will be for "+getName()+" and it will be payed with a purchase order");
     }
 }

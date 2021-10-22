@@ -5,7 +5,10 @@ public class merchandiseItem {
     private String Name;
     private double price;
 
-    public merchandiseItem merchandiseItem(String Name, double price, ItemType type){
+    public merchandiseItem(String Name, double price, ItemType type){
+        taxibleType = type;
+        this.Name=Name;
+        this.price = price;
 
     }
     public String getName(){

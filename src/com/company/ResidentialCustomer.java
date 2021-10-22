@@ -3,5 +3,12 @@ package com.company;
 import java.util.ArrayList;
 
 public class ResidentialCustomer extends Customer{
-    public abstract double payForOrder(ArrayList<ItemsForSale> itemsInOrder);
+    public ResidentialCustomer(String customerName, Integer custID) {
+        super(customerName, custID);
+    }
+
+    public double payForOrder(ArrayList<merchandiseItem> itemsInOrder){
+
+    }
+
 }
