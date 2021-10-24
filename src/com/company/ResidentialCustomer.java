@@ -8,7 +8,8 @@ public class ResidentialCustomer extends Customer{
     }
 
     public double payForOrder(ArrayList<merchandiseItem> itemsInOrder){
-        for (ArrayList<merchandiseItem>){
+        for (var cart: itemsInOrder){
+            if
 
         }
 

@@ -47,8 +47,9 @@ public class Store {
         }
         allItems = new ArrayList<merchandiseItem>();
         allItemTypes = new ArrayList<ItemType>();
-        var filename2 = Paths.get(filename);
-        var allLines2 = Files.readAllLines(filePath);
+        var filename2 = "Items.txt";
+        var filePath2 = Paths.get(filename2);
+        var allLines2 = Files.readAllLines(filePath2);
         for ( var line : allLines2){
             var splitLine = line.split(",");
             var itemName = splitLine[0];
