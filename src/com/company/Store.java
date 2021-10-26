@@ -35,11 +35,11 @@ public class Store {
                 var newCustomer = new ResidentialCustomer(customerName, customerID);
                 allCustomers.add(newCustomer);
             }
-            else (customerType=="BusinessCustomer"){
+            else if (customerType == "BusinessCustomer") {
                 var newCustomer = new BusinessCustomer(customerName, customerID);
                 allCustomers.add(newCustomer);
             }
-            else (customerType=="TaxExemptCustomer"){
+            else if (customerType=="TaxExemptCustomer"){
                 var newCustomer = new TaxExemptCustomer(customerName,customerID);
                 allCustomers.add(newCustomer);
             }
