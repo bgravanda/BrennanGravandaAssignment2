@@ -10,10 +10,12 @@ public class TaxExemptCustomer extends Customer{
 
     @Override
     public double payForOrder(ArrayList<merchandiseItem> itemsInOrder) {
-        var sum = new Int;
+        int sum = 0;
         for (var item : itemsInOrder){
+            sum += item.getPrice();
 
         }
+        return sum;
     }
 
     @Override

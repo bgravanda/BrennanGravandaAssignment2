@@ -12,8 +12,14 @@ public class BusinessCustomer extends Customer{
     }
 
     public double payForOrder(ArrayList<merchandiseItem> itemsInOrder){
+        int sum = 0;
+        for (var item : itemsInOrder){
+            sum += item.getPrice();
 
+        }
+        return sum;
     }
+
     public void arrangeDelivery(){
 
         System.out.println("this order will be for "+getName()+" and it will be payed with a purchase order");
