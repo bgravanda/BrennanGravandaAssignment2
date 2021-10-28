@@ -16,6 +16,7 @@ public class Store {
     private static int nextID = 1005;
     private ArrayList<merchandiseItem>allItems;
     private ArrayList<ItemType>allItemTypes;
+    private double revenue;
 
 
 
