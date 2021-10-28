@@ -10,6 +10,7 @@ public class ResidentialCustomer extends Customer {
     public double payForOrder(ArrayList<merchandiseItem> itemsInOrder) {
         int sum = 0;
         for (var item : itemsInOrder) {
+            if ( )
             sum += item.getPrice();
 
         }

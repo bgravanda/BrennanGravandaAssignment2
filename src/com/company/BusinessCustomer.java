@@ -12,8 +12,9 @@ public class BusinessCustomer extends Customer{
     }
 
     public double payForOrder(ArrayList<merchandiseItem> itemsInOrder){
-        int sum = 0;
+        var sum = 0;
         for (var item : itemsInOrder){
+            if()
             sum += item.getPrice();
 
         }
@@ -24,4 +25,12 @@ public class BusinessCustomer extends Customer{
 
         System.out.println("this order will be for "+getName()+" and it will be payed with a purchase order");
     }
+    public double payOutstandingBalance(){
+        if (purchaseOrderBalance >= 1000);
+        var discountAmount = purchaseOrderBalance *.05;
+        purchaseOrderBalance = purchaseOrderBalance-discountAmount;
+        return purchaseOrderBalance;
+    }
+
+
 }

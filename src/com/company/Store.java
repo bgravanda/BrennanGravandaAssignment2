@@ -109,7 +109,7 @@ public class Store {
         var custadd=CustOrder.SelectAddress(Input);
         System.out.println(custadd.toString());
         Input.nextLine();
-        var currentOrder = new Order(custadd, CustOrder);
+        var currentOrder = new Order(custadd, CustOrder,);
         System.out.println(currentOrder.getOrderedBy()+"'s order will be sent to "+currentOrder.getDestination());
 
 
