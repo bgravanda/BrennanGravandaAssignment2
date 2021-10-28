@@ -55,6 +55,7 @@ public class Store {
             var itemName = splitLine[0];
             var itemType = splitLine[1];
             var itemPrice = splitLine[2];
+
         }
 
     }
@@ -105,11 +106,14 @@ public class Store {
     }
 
     private void makeOrder(Customer CustOrder, Scanner Input) {
+        while (!Input.equals("done")){
+
+        }
         Input.nextLine();
         var custadd=CustOrder.SelectAddress(Input);
         System.out.println(custadd.toString());
         Input.nextLine();
-        var currentOrder = new Order(custadd, CustOrder,);
+        var currentOrder = new Order(custadd, CustOrder);
         System.out.println(currentOrder.getOrderedBy()+"'s order will be sent to "+currentOrder.getDestination());
 
 
@@ -126,8 +130,20 @@ public class Store {
         var custID = nextID;
         nextID++;
         System.out.println(customerName+" has an ID of "+custID);
-        var newCustomer = new Customer(customerName, custID);
-        allCustomers.add(newCustomer);
+        System.out.println("Say if you are a Residential Customer type 1, a Business Customer type 2, and for Tax Exempt Customer type 3");
+        var customerType = inputReader.nextLine();
+        if (customerType== "1") {
+            var newCustomer = new ResidentialCustomer(customerName, custID);
+            allCustomers.add(newCustomer);
+        }
+        else if (customerType == "2") {
+            var newCustomer = new BusinessCustomer(customerName, custID);
+            allCustomers.add(newCustomer);
+        }
+        else if (customerType=="3"){
+            var newCustomer = new TaxExemptCustomer(customerName,custID);
+            allCustomers.add(newCustomer);
+        }
 
     }
 

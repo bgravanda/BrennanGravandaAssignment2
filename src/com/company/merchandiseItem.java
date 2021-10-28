@@ -17,7 +17,8 @@ public class merchandiseItem {
     public double getPrice(){
         return price;
     }
-    private ItemType getType(){
+    public ItemType getType(){
+
         return taxibleType;
     }
 }
