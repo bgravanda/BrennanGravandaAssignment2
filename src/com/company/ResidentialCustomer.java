@@ -6,7 +6,7 @@ public class ResidentialCustomer extends Customer {
     public ResidentialCustomer(String customerName, Integer custID) {
         super(customerName, custID);
     }
-
+// gets the sum and applies tax
     public double payForOrder(ArrayList<merchandiseItem> itemsInOrder) {
         var sum = 0.0;
         for (var item : itemsInOrder){

@@ -1,5 +1,7 @@
 package com.company;
 
+import java.util.Scanner;
+
 public class merchandiseItem {
     private ItemType taxibleType;
     private String Name;
@@ -11,12 +13,16 @@ public class merchandiseItem {
         this.price = price;
 
     }
+    //gets item name
     public String getName(){
+
         return Name;
     }
+    //gets item price
     public double getPrice(){
         return price;
     }
+    //gets item type
     public ItemType getType(){
 
         return taxibleType;

@@ -12,10 +12,12 @@ public class Order {
         cartForOrder= cart ;
 
     }
+    //gets who ordered the items
     public String getOrderedBy(){
         var newOrder = orderedBy.toString();
         return newOrder;
     }
+    //gets the destination of the package
     public String getDestination(){
         var newDestination=destination.toString();
         return newDestination;

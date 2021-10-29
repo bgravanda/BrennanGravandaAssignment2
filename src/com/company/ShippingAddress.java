@@ -8,7 +8,7 @@ public class ShippingAddress {
     private String City;
     private String PostalCode;
     private String Address;
-
+//creates the address
     public ShippingAddress(Scanner inputReader) {
         inputReader.nextLine();
         System.out.println("What is the address?");
@@ -21,10 +21,12 @@ public class ShippingAddress {
         PostalCode = inputReader.nextLine();
         Address = AddressLine1+","+City+","+State+","+PostalCode;
     }
+    //gets the address
     public String getAddress(){
         return Address;
 
     }
+    //creates the address to a string
     public String toString(){
         return Address;
     }

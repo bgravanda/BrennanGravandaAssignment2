@@ -7,7 +7,7 @@ public class TaxExemptCustomer extends Customer{
     public TaxExemptCustomer(String customerName, Integer custID) {
         super(customerName, custID);
     }
-
+//finds the price of the cart with no tax
     @Override
     public double payForOrder(ArrayList<merchandiseItem> itemsInOrder) {
         int sum = 0;
@@ -17,7 +17,7 @@ public class TaxExemptCustomer extends Customer{
         }
         return sum;
     }
-
+//arranges the delivery
     @Override
     public void arrangeDelivery() {
         super.arrangeDelivery();

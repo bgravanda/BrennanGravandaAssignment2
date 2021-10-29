@@ -17,10 +17,12 @@ public class Store {
     private ArrayList<merchandiseItem>allItems;
     private ArrayList<ItemType>allItemTypes;
     private double revenue;
+    private double itemPrice;
+    private ItemType itemType;
 
 
 
-
+//Reads in all the customers in Customers.txt
     public Store() throws IOException {
         allOrders = new ArrayList<Order>();
         allCustomers = new ArrayList<Customer>();
@@ -46,21 +48,26 @@ public class Store {
             }
 
         }
+        //reads all items in from Items.txt
         allItems = new ArrayList<merchandiseItem>();
         allItemTypes = new ArrayList<ItemType>();
         var filename2 = "Items.txt";
         var filePath2 = Paths.get(filename2);
         var allLines2 = Files.readAllLines(filePath2);
         for ( var line : allLines2){
+
             var splitLine = line.split(",");
             var itemName = splitLine[0];
-            var itemType = splitLine[1];
-            var itemPrice = splitLine[2];
+            itemType = ItemType.valueOf(splitLine[1]);
+             itemPrice = Double.parseDouble(splitLine[2]);
+            var newItem = new merchandiseItem(itemName,itemPrice,itemType);
+            allItems.add(newItem);
+
 
         }
 
     }
-
+//Gives the customer a menu
     public void runStore() {
         var menuReader = new Scanner(System.in);
         while (true) {
@@ -85,7 +92,7 @@ public class Store {
             }
         }
     }
-
+//Once a customer is selected this gives more options to do with customer
     private void ManageCustomerMenu(Scanner menuReader, Customer currentCustomer) {
 
         while (true) {
@@ -105,29 +112,41 @@ public class Store {
             }
         }
     }
-
+//Creates a cart and selects address and initiates
     private void makeOrder(Customer CustOrder, Scanner Input) {
+        var cart = new ArrayList<merchandiseItem>();
         while (!Input.equals("done")){
+            for (var list: allItems){
+                System.out.println(list);
+                System.out.println("select an item starting with 0 if you are done adding items type 'done'");
+            }
+            if (Input.equals("done")){
+                break;
+            }
+            var item = Input.toString();
+            Input.nextLine();
+            var shopping = new merchandiseItem(item,itemPrice,itemType);
+            cart.add(shopping);
 
         }
         Input.nextLine();
         var custadd=CustOrder.SelectAddress(Input);
         System.out.println(custadd.toString());
         Input.nextLine();
-        var currentOrder = new Order(custadd, CustOrder);
+        var currentOrder = new Order(custadd, CustOrder,cart);
         System.out.println(currentOrder.getOrderedBy()+"'s order will be sent to "+currentOrder.getDestination());
+        var pay = CustOrder.payForOrder(cart);
+        var deliver=CustOrder.arrangeDelivery();
 
 
 
     }
 
-
+//adds a customer and gives a customer ID also prompts the customer to select a type
     private void addCustomer(Scanner inputReader) {
         System.out.println("What is the new Customer's name:");
         inputReader.nextLine();
         var customerName = inputReader.nextLine();
-        System.out.println("Are you a Tax Exempt Customer,Residential Customer, or Business Customer");
-        var type = inputReader.nextLine();
         var custID = nextID;
         nextID++;
         System.out.println(customerName+" has an ID of "+custID);
@@ -147,7 +166,7 @@ public class Store {
         }
 
     }
-
+//searches for a customer in array list that matches
     private Optional<Customer> selectCustomer(Scanner reader) {
         System.out.println("Customer ID of customer to select");
         var idToFind = reader.nextInt();
@@ -159,7 +178,7 @@ public class Store {
         return Optional.empty();
     }
 
-
+//First menu
     private void printMenu() {
         System.out.println("*************************");
         System.out.println("What would you like to do next(select the number):");
@@ -170,7 +189,7 @@ public class Store {
         System.out.println("********************************");
         System.out.println("Enter choice:");
     }
-
+//second menu
     private void printManageCustomerMenu(Customer currentCustomer) {
         System.out.println("**************************************");
         System.out.println("What do you want to do with "+currentCustomer.getName()+" ?");

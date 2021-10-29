@@ -10,7 +10,7 @@ public class BusinessCustomer extends Customer{
     public BusinessCustomer(String customerName, Integer custID) {
         super(customerName, custID);
     }
-
+// pays for the order with tax
     public double payForOrder(ArrayList<merchandiseItem> itemsInOrder){
         var sum = 0.0;
         for (var item : itemsInOrder){
@@ -34,11 +34,12 @@ public class BusinessCustomer extends Customer{
         purchaseOrderBalance = purchaseOrderBalance + sum;
         return sum;
     }
-
+//arranges the delivery
     public void arrangeDelivery(){
 
         System.out.println("this order will be for "+getName()+" and it will be payed with a purchase order");
     }
+    //applies the discount
     public double payOutstandingBalance(){
         if (purchaseOrderBalance >= 1000) {
             var discountAmount = purchaseOrderBalance * .05;
