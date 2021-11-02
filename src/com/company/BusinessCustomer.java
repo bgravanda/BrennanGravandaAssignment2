@@ -12,7 +12,7 @@ public class BusinessCustomer extends Customer{
     }
 // pays for the order with tax
     public double payForOrder(ArrayList<merchandiseItem> itemsInOrder){
-        var sum = 0.0;
+        double sum = 0.0;
         for (var item : itemsInOrder){
             if(item.getType() == ItemType.WICFood) {
                 sum += item.getPrice();

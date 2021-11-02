@@ -34,15 +34,15 @@ public class Store {
             var customerName = splitLine[0];
             var customerID = Integer.parseInt(splitLine[1]);
             var customerType = splitLine[2];
-            if (customerType== "ResidentialCustomer") {
+            if (customerType.equals("ResidentialCustomer")) {
                 var newCustomer = new ResidentialCustomer(customerName, customerID);
                 allCustomers.add(newCustomer);
             }
-            else if (customerType == "BusinessCustomer") {
+            else if (customerType.equals("BusinessCustomer")) {
                 var newCustomer = new BusinessCustomer(customerName, customerID);
                 allCustomers.add(newCustomer);
             }
-            else if (customerType=="TaxExemptCustomer"){
+            else if (customerType.equals("TaxExemptCustomer")){
                 var newCustomer = new TaxExemptCustomer(customerName,customerID);
                 allCustomers.add(newCustomer);
             }
@@ -88,6 +88,12 @@ public class Store {
                     break;
                 default:
                     System.out.println("Please choose one of the menu options");
+                case 4:
+                    for(var cust :allCustomers){
+                        var rev = cust.payOutstandingBalance();
+                        revenue = rev + revenue;
+                    }
+                    System.out.println("The revenue is"+revenue);
 
             }
         }
@@ -115,31 +121,29 @@ public class Store {
 //Creates a cart and selects address and initiates
     private void makeOrder(Customer CustOrder, Scanner Input) {
         var cart = new ArrayList<merchandiseItem>();
-        while (!Input.equals("done")){
+        while (true){
             for (var list: allItems){
                 System.out.println(list);
-                System.out.println("select an item starting with 0 if you are done adding items type 'done'");
-            }
-            if (Input.equals("done")){
-                break;
-            }
-            var item = Input.toString();
-            Input.nextLine();
-            var shopping = new merchandiseItem(item,itemPrice,itemType);
-            cart.add(shopping);
 
+            }
+            System.out.println("select an item starting with 0 if you are done adding items type a negative number");
+
+
+            var item = Input.nextInt();
+        if (item<0) {
+            break;
+        }
+            var curItem = allItems.get(item);
+            cart.add(curItem);
         }
         Input.nextLine();
         var custadd=CustOrder.SelectAddress(Input);
         System.out.println(custadd.toString());
-        Input.nextLine();
         var currentOrder = new Order(custadd, CustOrder,cart);
         System.out.println(currentOrder.getOrderedBy()+"'s order will be sent to "+currentOrder.getDestination());
         var pay = CustOrder.payForOrder(cart);
-        var deliver=CustOrder.arrangeDelivery();
-
-
-
+        CustOrder.arrangeDelivery();
+        revenue= revenue+pay;
     }
 
 //adds a customer and gives a customer ID also prompts the customer to select a type
@@ -152,15 +156,15 @@ public class Store {
         System.out.println(customerName+" has an ID of "+custID);
         System.out.println("Say if you are a Residential Customer type 1, a Business Customer type 2, and for Tax Exempt Customer type 3");
         var customerType = inputReader.nextLine();
-        if (customerType== "1") {
+        if (customerType.equals("1")) {
             var newCustomer = new ResidentialCustomer(customerName, custID);
             allCustomers.add(newCustomer);
         }
-        else if (customerType == "2") {
+        else if (customerType.equals("2")) {
             var newCustomer = new BusinessCustomer(customerName, custID);
             allCustomers.add(newCustomer);
         }
-        else if (customerType=="3"){
+        else if (customerType.equals("3")){
             var newCustomer = new TaxExemptCustomer(customerName,custID);
             allCustomers.add(newCustomer);
         }
@@ -185,6 +189,7 @@ public class Store {
         System.out.println("[1] Exit Program");
         System.out.println("[2] add customer");
         System.out.println("[3] Select a customer");
+        System.out.println("[4] get revenue");
         System.out.println("we'll add more soon");
         System.out.println("********************************");
         System.out.println("Enter choice:");

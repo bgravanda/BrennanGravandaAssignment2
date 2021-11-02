@@ -10,7 +10,7 @@ public class TaxExemptCustomer extends Customer{
 //finds the price of the cart with no tax
     @Override
     public double payForOrder(ArrayList<merchandiseItem> itemsInOrder) {
-        int sum = 0;
+         double sum = 0.0;
         for (var item : itemsInOrder){
             sum += item.getPrice();
 
