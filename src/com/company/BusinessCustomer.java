@@ -1,7 +1,7 @@
 package com.company;
 
 import java.util.ArrayList;
-
+//The following code is for the customer type Business Customer
 public class BusinessCustomer extends Customer{
     private double purchaseOrderBalance;
     private int PersonID;
@@ -17,6 +17,7 @@ public class BusinessCustomer extends Customer{
             if(item.getType() == ItemType.WICFood) {
                 sum += item.getPrice();
             }
+            //Adds tax to clothing
             if(item.getType()==ItemType.Clothing){
                 sum += item.getPrice();
                 if(sum>=175){
@@ -25,6 +26,7 @@ public class BusinessCustomer extends Customer{
                     sum = sum + tax;
                 }
             }
+            //adds tax to general items
             if(item.getType()==ItemType.GeneralMerchandise){
                 sum += item.getPrice();
                 var tax = sum*.0625;

@@ -13,6 +13,7 @@ public class ResidentialCustomer extends Customer {
             if(item.getType() == ItemType.WICFood) {
                 sum += item.getPrice();
             }
+            //applies tax to clothing
             if(item.getType()==ItemType.Clothing){
                 sum += item.getPrice();
                 if(sum>=175){
@@ -21,6 +22,7 @@ public class ResidentialCustomer extends Customer {
                     sum = sum + tax;
                 }
             }
+            //adds tax to general items
             if(item.getType()==ItemType.GeneralMerchandise){
                 sum += item.getPrice();
                 var tax = sum*.0625;

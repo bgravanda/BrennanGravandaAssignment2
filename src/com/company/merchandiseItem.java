@@ -27,6 +27,7 @@ public class merchandiseItem {
 
         return taxibleType;
     }
+    //puts the merchandise item to a string
     public String toString(){
         return Name;
     }

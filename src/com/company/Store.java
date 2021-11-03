@@ -77,10 +77,10 @@ public class Store {
                 case 1:
                     System.exit(0);
                 case 2:
-                    addCustomer(menuReader);
+                    addCustomer(menuReader);//initiates add customer
                     break;
                 case 3:
-                    Optional<Customer> current = selectCustomer(menuReader);
+                    Optional<Customer> current = selectCustomer(menuReader);//starts a search for the customer in the array list
                     if (current.isPresent())
                         ManageCustomerMenu(menuReader, current.get());
                     else
@@ -89,7 +89,7 @@ public class Store {
                 default:
                     System.out.println("Please choose one of the menu options");
                 case 4:
-                    for(var cust :allCustomers){
+                    for(var cust :allCustomers){//gets the revenue of the store
                         var rev = cust.payOutstandingBalance();
                         revenue = rev + revenue;
                     }
@@ -121,7 +121,7 @@ public class Store {
 //Creates a cart and selects address and initiates
     private void makeOrder(Customer CustOrder, Scanner Input) {
         var cart = new ArrayList<merchandiseItem>();
-        while (true){
+        while (true){//has the customer create a cart
             for (var list: allItems){
                 System.out.println(list);
 
@@ -137,13 +137,13 @@ public class Store {
             cart.add(curItem);
         }
         Input.nextLine();
-        var custadd=CustOrder.SelectAddress(Input);
+        var custadd=CustOrder.SelectAddress(Input);//selects the address for the order
         System.out.println(custadd.toString());
         var currentOrder = new Order(custadd, CustOrder,cart);
         System.out.println(currentOrder.getOrderedBy()+"'s order will be sent to "+currentOrder.getDestination());
         var pay = CustOrder.payForOrder(cart);
         CustOrder.arrangeDelivery();
-        revenue= revenue+pay;
+        revenue= revenue+pay;//adds the amount to the revenue of the store
     }
 
 //adds a customer and gives a customer ID also prompts the customer to select a type
@@ -154,6 +154,7 @@ public class Store {
         var custID = nextID;
         nextID++;
         System.out.println(customerName+" has an ID of "+custID);
+        //has the customer select what type they are
         System.out.println("Say if you are a Residential Customer type 1, a Business Customer type 2, and for Tax Exempt Customer type 3");
         var customerType = inputReader.nextLine();
         if (customerType.equals("1")) {
